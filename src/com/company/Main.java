@@ -7,13 +7,17 @@ public class Main {
     static String[] circleColors = {"Red", "Green", "Yellow", "Blue", "Purple", "Cyan", "Orange", "Brown", "White", "Black"};
 
     public static void main(String[] args) {
+        float sum = 0;
+        float average = 0;
+        int totalNum = 100;
 
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= totalNum; i++) {
             int max = 150;
             int min = 0;
             int randX = (int) (Math.random() * (max - min)) + min;
             int randY = (int) (Math.random() * (max - min)) + min;
             int randRadius = (int) (Math.random() * (max / 4));
+
 
             Point circleCenter = new Point();
             circleCenter.pointX = randX;
@@ -32,6 +36,16 @@ public class Main {
             System.out.println("(" + testCircle.center.pointX + "," + testCircle.center.pointY + ")");
             System.out.println("Radius = " + testCircle.radius);
             System.out.println("CircleColor = " + testCircle.color);
+            System.out.println("CircleArea = " + testCircle.CalculateArea());
+
+
+            float add = (float) testCircle.CalculateArea();
+            sum = sum + add;
+            average = sum / totalNum;
+
         }
+        System.out.println();
+        System.out.println("The Sum of Areas = " + sum);
+        System.out.println("The Average of Areas = " + average);
     }
 }

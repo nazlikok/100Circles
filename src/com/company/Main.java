@@ -21,7 +21,6 @@ public class Main {
             int randY = (int) (Math.random() * (max - min)) + min;
             int randRadius = (int) (Math.random() * (max / 4));
 
-
             Point circleCenter = new Point();
             circleCenter.pointX = randX;
             circleCenter.pointY = randY;
@@ -32,6 +31,8 @@ public class Main {
             testCircle.radius = randRadius;
             int randColor = (int) (Math.random() * circleColors.length);
             testCircle.color = circleColors[randColor];
+
+            countColors[randColor]= countColors[randColor]+1;
 
             if (i > 1) {
                 System.out.println();
@@ -45,5 +46,9 @@ public class Main {
         System.out.println("The Sum of Areas = " + sum);
         average = sum / totalNum;
         System.out.println("The Average of Areas = " + average);
+
+        for (int i=0; i< countColors.length; i++){
+            System.out.println(circleColors[i] + " =" + countColors[i]);
+        }
     }
 }

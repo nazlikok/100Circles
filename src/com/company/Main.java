@@ -11,6 +11,9 @@ public class Main {
         float average = 0;
         int totalNum = 100;
 
+
+        int countColors[] = new int[circleColors.length];
+
         for (int i = 1; i <= totalNum; i++) {
             int max = 150;
             int min = 0;
@@ -24,28 +27,23 @@ public class Main {
             circleCenter.pointY = randY;
 
             Circle testCircle = new Circle();
+            testCircle.circleName="Circle-" + String.format("%03d", i);
             testCircle.center = circleCenter;
             testCircle.radius = randRadius;
             int randColor = (int) (Math.random() * circleColors.length);
             testCircle.color = circleColors[randColor];
+
             if (i > 1) {
                 System.out.println();
             }
-            System.out.format("Circle-" + testCircle.circleName.format("%03d", i));
-            System.out.println();
-            System.out.println("(" + testCircle.center.pointX + "," + testCircle.center.pointY + ")");
-            System.out.println("Radius = " + testCircle.radius);
-            System.out.println("CircleColor = " + testCircle.color);
-            System.out.println("CircleArea = " + testCircle.CalculateArea());
-
-
+            testCircle.Print(i);
             float add = (float) testCircle.CalculateArea();
             sum = sum + add;
-            average = sum / totalNum;
 
         }
         System.out.println();
         System.out.println("The Sum of Areas = " + sum);
+        average = sum / totalNum;
         System.out.println("The Average of Areas = " + average);
     }
 }

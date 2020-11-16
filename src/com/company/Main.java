@@ -25,13 +25,16 @@ public class Main {
 
         Circle farthestCircle = new Circle();
         farthestCircle.center = new Point();
-        farthestCircle.center.pointX = 0;
-        farthestCircle.center.pointY = 0;
+        farthestCircle.center.pointX = Integer.MIN_VALUE;
+        farthestCircle.center.pointY = Integer.MIN_VALUE;
 
         Circle closestCircle = new Circle();
         closestCircle.center = new Point();
-        closestCircle.center.pointX = 0;
-        closestCircle.center.pointY = 0;
+        closestCircle.center.pointX = Integer.MIN_VALUE;
+        closestCircle.center.pointY = Integer.MIN_VALUE;
+
+
+        Circle redCircles[] = new Circle[totalNum];
 
         for (int i = 1; i <= totalNum; i++) {
 
@@ -51,6 +54,9 @@ public class Main {
             int randColor = (int) (Math.random() * circleColors.length);
             testCircle.color = circleColors[randColor];
 
+            if (testCircle.color.equals("Red")){
+                redCircles[i-1] =testCircle;
+            }
 
             countColors[randColor] = countColors[randColor] + 1;
 
@@ -88,5 +94,17 @@ public class Main {
         System.out.println("\n");
         System.out.println("Farthest Circle is = " );
         farthestCircle.Print(point);
+
+
+        System.out.println("\n\nRed Circles = ");
+        for (int i=0; i< redCircles.length; i++){
+            if(redCircles[i] == null){
+                continue;
+            }
+            redCircles[i].Print(point);
+            System.out.println();
+
+        }
+
     }
 }

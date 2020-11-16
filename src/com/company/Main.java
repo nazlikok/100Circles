@@ -1,5 +1,7 @@
 package com.company;
+
 import java.lang.Math;
+import java.util.*;
 
 public class Main {
 
@@ -14,11 +16,13 @@ public class Main {
 
         Circle testCircle = new Circle();
         Point point = new Point();
-        point.pointX=(int) (Math.random() *max);
-        point.pointY=(int) (Math.random() *max);
-        System.out.println("Point = "+ point.pointX + "," + point.pointY);
+        point.pointX = (int) (Math.random() * max);
+        point.pointY = (int) (Math.random() * max);
+        System.out.println("Point = " + point.pointX + "," + point.pointY + "\n");
+
 
         int countColors[] = new int[circleColors.length];
+        //int generatedCircles [] = new int[totalNum];
 
         for (int i = 1; i <= totalNum; i++) {
 
@@ -31,19 +35,19 @@ public class Main {
             circleCenter.pointY = randY;
 
 
-            testCircle.circleName="Circle-" + String.format("%03d", i);
+            testCircle.circleName = "Circle-" + String.format("%03d", i);
             testCircle.center = circleCenter;
             testCircle.radius = randRadius;
             int randColor = (int) (Math.random() * circleColors.length);
             testCircle.color = circleColors[randColor];
             testCircle.CalculateDistance(point);
 
-            countColors[randColor]= countColors[randColor]+1;
+            countColors[randColor] = countColors[randColor] + 1;
 
             if (i > 1) {
                 System.out.println();
             }
-            testCircle.Print(i,point);
+            testCircle.Print(i, point);
             float add = (float) testCircle.CalculateArea();
             sum = sum + add;
 
@@ -51,9 +55,9 @@ public class Main {
         System.out.println();
         System.out.println("The Sum of Areas = " + sum);
         average = sum / totalNum;
-        System.out.println("The Average of Areas = " + average);
+        System.out.println("The Average of Areas = " + average + "\n");
 
-        for (int i=0; i< countColors.length; i++){
+        for (int i = 0; i < countColors.length; i++) {
             System.out.println(circleColors[i] + " =" + countColors[i]);
         }
     }

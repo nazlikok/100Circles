@@ -11,7 +11,7 @@ public class Circle {
         return Area;
     }
 
-    void Print(int i,Point point){
+    void Print(Point point){
         System.out.format(circleName);
         System.out.println();
         System.out.println("(" + center.pointX + "," + center.pointY + ")");

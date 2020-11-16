@@ -14,7 +14,6 @@ public class Main {
         int max = 150;
         int min = 0;
 
-        Circle testCircle = new Circle();
         Point point = new Point();
         point.pointX = (int) (Math.random() * max);
         point.pointY = (int) (Math.random() * max);
@@ -24,8 +23,19 @@ public class Main {
         int countColors[] = new int[circleColors.length];
         //int generatedCircles [] = new int[totalNum];
 
+        Circle farthestCircle = new Circle();
+        farthestCircle.center = new Point();
+        farthestCircle.center.pointX = 0;
+        farthestCircle.center.pointY = 0;
+
+        Circle closestCircle = new Circle();
+        closestCircle.center = new Point();
+        closestCircle.center.pointX = 0;
+        closestCircle.center.pointY = 0;
+
         for (int i = 1; i <= totalNum; i++) {
 
+            Circle testCircle = new Circle();
             int randX = (int) (Math.random() * (max - min)) + min;
             int randY = (int) (Math.random() * (max - min)) + min;
             int randRadius = (int) (Math.random() * (max / 4));
@@ -40,18 +50,30 @@ public class Main {
             testCircle.radius = randRadius;
             int randColor = (int) (Math.random() * circleColors.length);
             testCircle.color = circleColors[randColor];
-            testCircle.CalculateDistance(point);
+
 
             countColors[randColor] = countColors[randColor] + 1;
 
             if (i > 1) {
                 System.out.println();
             }
-            testCircle.Print(i, point);
+            testCircle.Print(point);
             float add = (float) testCircle.CalculateArea();
             sum = sum + add;
 
+            float testCircleDistance = testCircle.CalculateDistance(point);
+            float closestDistance = closestCircle.CalculateDistance(point);
+            if (testCircleDistance <= closestDistance){
+                closestCircle = testCircle;
+            }
+
+            float farthestDistance = farthestCircle.CalculateDistance(point);
+            if(testCircleDistance >= farthestDistance){
+                farthestCircle = testCircle;
+            }
+
         }
+
         System.out.println();
         System.out.println("The Sum of Areas = " + sum);
         average = sum / totalNum;
@@ -60,5 +82,11 @@ public class Main {
         for (int i = 0; i < countColors.length; i++) {
             System.out.println(circleColors[i] + " =" + countColors[i]);
         }
+        System.out.println("\n");
+        System.out.println("Closest Circle is = " );
+        closestCircle.Print(point);
+        System.out.println("\n");
+        System.out.println("Farthest Circle is = " );
+        farthestCircle.Print(point);
     }
 }
